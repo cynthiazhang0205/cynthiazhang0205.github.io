@@ -1,0 +1,19 @@
+.paul {
+    text-align: center; 
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 50px; 
+    font-style:normal; 
+    color:#3b3b3b;
+}
+.menu{text-align: center; font-family:Georgia, 'Times New Roman', Times, serif;font-size:12px;font-style:oblique;}
+.menu a{color: grey; margin-right: 10px;}
+a.main {color: black}
+.menu a:link{color:#656565; text-decoration: none;}
+/* .menu a:visited{color:#000000;text-decoration:none;} */
+.menu a:hover{color:#000000;text-decoration: none;}
+/* .menu a:active{color:#000000;text-decoration: none;} */
+.pp{margin:auto; width: 550px; height:120px; border: 1px solid rgb(0, 0, 0)}
+.photo img{margin: auto; height: 600px; width: 600px; display: block; object-fit: cover;}
+.follow{text-align: center; font-family:Georgia, 'Times New Roman', Times, serif; font-size: 13px; font-style: oblique; color: #656565; }
+#media li{float: left; display: inline; width: 18px; margin-right: 29px;} 
+.social{display: flex; justify-content: center;}
