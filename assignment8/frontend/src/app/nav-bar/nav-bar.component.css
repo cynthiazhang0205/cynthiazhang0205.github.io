@@ -1,0 +1,26 @@
+
+.my-navbar a{
+    color: black;
+
+}
+
+.my-navbar a[aria-selected='true']{
+    border:2px black solid;
+    border-radius: 10px;
+}
+
+.my-navbar a[aria-selected='false']{
+    border:2px #ffffffff solid;
+    border-radius: 10px;
+}
+
+.my-navbar {
+    width: 90vw;
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px;
+}
+
+.my-navbar li{
+    margin-left: 3px;
+}

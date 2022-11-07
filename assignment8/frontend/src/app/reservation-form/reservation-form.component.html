@@ -1,0 +1,63 @@
+<div class="modal-header">
+    <h4 class="modal-title" style="font-size: 1.5em;font-weight: bold;">Reservation Form</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+    <p style="font-size: 1.5em;font-weight: bold;text-align: center;">{{details.name}}</p>
+    <form class="needs-validation" novalidate #form id="reserve">
+            <label for="email">E-mail</label>
+            <div class="input-group has-validation">
+            <input id="email" class="form-control" name="email" type="email" required #emailInput/>
+            <div class="invalid-feedback">{{emailInput.validationMessage}}</div>
+        </div>
+        <div class="mb-3">
+            <label for="date">Date</label>
+            <div class="input-group">
+                <input
+                    id="date"
+                    class="form-control"
+                    placeholder="mm/dd/yyyy"
+                    name="dp"
+                    ngbDatepicker
+                    #dp="ngbDatepicker"
+                    [minDate]="calendar.getToday()"
+                    #dateInput
+                    required
+                />
+                <button class="btn btn-outline-secondary bi bi-calendar3" (click)="dp.toggle()" type="button">
+                    <img src="/calendar.png" style="width: 20px; height: 20px;"/>
+                </button>
+                <div class="invalid-feedback">Date is required</div>
+            </div>
+        </div>
+        <div>
+            <label>Time</label>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center; width: 14em;">
+            <select name="hour" class="form-control" required #hourInput (ngModel)="hour">
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+            </select>
+            <span style="margin-left: 5px; margin-right: 5px;">:</span>
+            <select name="minute" class="form-control" required #minuteInput (ngModel)="minute">
+                <option value="00">00</option>
+                <option value="15">15</option>
+                <option value="30">30</option>
+                <option value="45">45</option>
+            </select>
+            <img src="/clock.png" style="width: 17px; height: 17px; margin-left: 5px;"/>
+        </div>
+        <div style="display: flex;justify-content: center; margin-top: 10px;">
+            <button class="btn btn-danger" type="submit" (click)="onSubmit()">Submit</button>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>

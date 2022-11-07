@@ -1,0 +1,9 @@
+<div style="display: flex; align-items: center; flex-direction: column;">
+    <app-search-form [query]="search.bind(this)" [clear]="clear.bind(this)"></app-search-form>
+    <div *ngIf="!details">
+        <app-results-table [candidates]="candidates" [show]="show.bind(this)"></app-results-table>
+    </div>
+    <div *ngIf="details">
+        <app-details-card [details]="details" [back]="back.bind(this)" [reviews]="reviews"></app-details-card>
+    </div>
+</div>

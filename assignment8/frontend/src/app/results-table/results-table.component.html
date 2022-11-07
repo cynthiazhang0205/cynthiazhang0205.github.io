@@ -1,0 +1,33 @@
+<div *ngIf="candidates && candidates.length > 0" class="card" style="margin-top: 3em; border-radius: 20px; padding: 1em">
+    <table class="table table-striped" style="text-align: center; font-size: 1em;">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Image</th>
+                <th scope="col" sortable="name">Business Name</th>
+                <th scope="col" sortable="rating">Rating</th>
+                <th scope="col" sortable="distance">Distance(miles)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let store of candidates; let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>
+                    <img
+                        [src]="store.image_url"
+                        style="width: 6em; height: 6em; max-width: 30vw; max-height: 30vh; cursor: pointer"
+                        (click)="this.show( store.id )"
+                    />
+                </td>
+                <td>  <div style="cursor: pointer" (click)="this.show( store.id )">{{ store.name }}</div>  </td>
+                <td>{{ store.rating | number }}</td>
+                <td>{{ toNumeric(store.distance) }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div *ngIf="candidates && candidates.length === 0" class="card" style="margin-top: 3em; border-radius: 20px; padding: 1em; color: red; padding-right: 5em; padding-left: 5em;">
+    No results available
+</div>

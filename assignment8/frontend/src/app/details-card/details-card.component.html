@@ -1,0 +1,114 @@
+<div class="card responsive-wide" style="margin-top: 3em; border-radius: 20px; padding: 1em; min-width: 70vw;" *ngIf="details">
+    <div style="font-size: 22px; cursor: pointer;" (click)="back()">&#8592;</div>
+    <div style="font-size: 30px; font-weight: bold; text-align: center; margin-bottom: 20px;">{{details.name}}</div>
+    <mat-tab-group mat-align-tabs="center" backgroundColor="accent">
+        <mat-tab label="Business details">
+            <div style="width: 100%; overflow: hidden;">
+                <div style="text-align:center; margin-top: 10px; display: flex; flex-wrap: wrap;">
+                    <div class="col" style="min-width: 300px;">
+                        <div class="row">
+                            <p class="title">Address</p>
+                            <span *ngFor="let address of details.location.display_address">
+                                {{address}}
+                            </span>
+                        </div>
+                        <div class="row">
+                            <p class="title">Phone</p>
+                            <p>
+                                {{details.display_phone}}
+                            </p> 
+                        </div>
+                        <div class="row">
+                            <p class="title">Status</p>
+                            <p class="status" [attr.closed]="!details.hours[0].is_open_now" >
+                                {{details.hours[0].is_open_now?"Open":"Closed"}}
+                            </p> 
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <p class="title">Category</p>
+                            <p>
+                                {{this.getCategory(details.categories)}}
+                            </p> 
+                        </div>
+
+                        <div class="row">
+                            <p class="title">Price Range</p>
+                            <p>
+                                {{details.price}}
+                            </p> 
+                        </div>
+
+                        <div class="row">
+                            <p class="title">Visit yelp for more</p>
+                            <p>
+                                <a [href]="details.url" target="_blank">
+                                    Business link
+                                </a>
+                            </p> 
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div style="display: flex;justify-content: center; padding: 10px;">
+                        <div *ngIf="reservations.get(details.id) == undefined; else CancelReservation">
+                            <button class="btn btn-primary" (click)="reserve(details)">Reserve Now</button>
+                        </div>
+                        <ng-template #CancelReservation>
+                            <button class="btn btn-danger" (click)="reservations.remove(details.id)">Cancel Reservation</button>
+                        </ng-template>
+                    </div>
+                </div>
+                <div style="display: flex;justify-content: center;align-items: flex-end; margin-top: 10px;">
+                    <div>
+                        Share on: 
+                    </div>
+                    <div>
+                        <a [href]="'http://twitter.com/share?' + this.getTwitterLink(details)" target="_blank">
+                            <img src="/twitter.png" style="width: 30px; height: 30px;">
+                        </a>
+
+                        <a target="_blank" [href]="'https://www.facebook.com/sharer/sharer.php?' + this.getFacebookLink(details)" class="fb-xfbml-parse-ignore">
+                            <img src="/facebook.png" style="width: 30px; height: 30px;"/>
+                        </a>
+                    </div>
+                </div>
+                <div class="row" style="overflow: hidden">
+                    <ngb-carousel>
+                        <ng-template ngbSlide *ngFor="let photo of details.photos">
+                            <div class="picsum-img-wrapper" style="display: flex; justify-content: center; height: 30em">
+                                <img [src]="photo" alt="" />
+                            </div>
+                        </ng-template>
+                    </ngb-carousel>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Map location">
+            <div class="google-map">
+                <google-map [options]="mapOptions" [width]="null">
+                    <map-marker [position]="marker"></map-marker>
+                 </google-map>
+            </div>
+        </mat-tab>
+        <mat-tab label="Reviews">
+            <table class="table table-striped">
+                <tbody>
+                    <tr *ngFor="let review of reviews">
+                        <td>
+                            <div>
+                                <p style="font-weight: bold; margin-bottom: -5px;">{{ review.user.name }}</p>
+                                <p>Rating: {{ review.rating }}/5</p>
+                                <p style="overflow-wrap: break-word;">{{ review.text }}</p>
+                                <p>{{ review.time_created.split(" ")[0] }}</p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </mat-tab>
+      </mat-tab-group>
+
+</div>

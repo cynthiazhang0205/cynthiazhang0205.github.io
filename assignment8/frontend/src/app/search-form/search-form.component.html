@@ -1,0 +1,113 @@
+<div class="card" style="width: 95vw; max-width: 40em; border-radius: 40px;" >
+    <form #myForm="ngForm">
+        <div style="text-align: center; margin-top: 1em; font-size: 1.5em; font-weight: bold;">Business search</div>
+        <div class="form-group" style="padding: 30px;">
+            <fieldset>
+                <div class="mb-3 row" style="margin-bottom: 15px !important;">
+                    <label for="term">
+                        Keyword
+                        <span style="color:red;">*</span>
+                    </label>
+                    <div class="">
+                        <input
+                            id="term"
+                            type="text"
+                            class="form-control"
+                            [class.is-invalid]="searchFailed"
+                            [(ngModel)]="term"
+                            [ngbTypeahead]="search"
+                            name="term"
+                            popupClass="keyword-wide"
+                            required
+                            #termInput
+                        />
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Keyword -->
+            <!-- <label for="term">
+                Keyword
+                <span style="color:red;">*</span>
+            </label>
+            <input type="text" class="form-control" id="term" required> -->
+            <!-- end Keyword -->
+    
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                <div style="margin-bottom: 15px !important;">
+                    <div class="type" >
+                        <label>
+                                Distance(miles)
+                        </label>
+                    </div>
+                    <div>
+                        <input 
+                            class="form-control" 
+                            type="text" 
+                            id="Distance" 
+                            style="width: 200px; height:38px;"
+                            value="" placeholder="10"
+                            [(ngModel)]="distance"
+                            name="distance"
+                            />
+                    </div>
+                </div>
+                <div style="margin-bottom: 15px !important;">
+                    <div class="type">
+                        <label>
+                            Category
+                        </label>
+                        <span style="color:red;">*</span>
+                    </div>
+                    <select id="Category"
+                        name="categories"
+                        style="width: 200px; height:38px;background: url('/arrow.png') no-repeat scroll right center transparent;"
+                        class="form-control" [(ngModel)]="categories" required>
+                        <option value="all">Default</option>
+                        <option value="arts">Arts & Entertainment</option>
+                        <option value="health">Health & Medical</option>
+                        <option value="hotelstravel">Hotels & Travel</option>
+                        <option value="food">Food</option>
+                        <option value="professional">Professional Services</option>
+                    </select>
+                </div>
+            </div>
+    
+                <div>
+                    <label>Location</label>
+                    <span style="color:red;">*</span>
+                    
+                    <input 
+                    class="form-control"
+                    type="city" 
+                    id="location" 
+                    style="height:38px;"
+                    [required]="!auto" [disabled]="auto"
+                    [(ngModel)]="location"
+                    name="location"
+                    #locationInput
+                    >
+                </div>
+                
+                <div style="margin-top: 0.4em;">
+                    <input type="checkbox" id="checkbox" name="checkbox" [(ngModel)]="auto" >
+                    <label style="font-size: small; margin-left: 0.8em;" for="checkbox">
+                        Auto-detect my location
+                    </label>
+                </div>
+    
+                <!-- BOTTOM -->
+            <div style="display: flex; width: 100%; justify-content: center; margin-top: 2em;">
+                <div>
+                    <input type="submit" id="submit" class="btn btn-danger" value="Submit" (click)="submit()" #submitBtn>
+                </div>
+                <div style="margin-left: 2em;">
+                    <input type="reset" id="clear" class="btn btn-primary" value="Clear" (click)="clear()" />
+                </div>
+            </div>
+    
+            </div>
+        
+    </form>
+</div>
+

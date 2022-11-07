@@ -1,0 +1,40 @@
+.title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.status {
+    color: green;
+}
+
+.status[closed='true'] {
+    color: red;
+}
+
+.row {
+    margin-top: 5px;
+}
+
+ngb-carousel > button{
+    filter: brightness(0.5) !important;
+}
+
+@media screen and (min-width: 601px) {
+    .responsive-wide {
+        width: 70vw;
+    }   
+    .google-map {
+        width: 65vw;
+        margin: auto;
+    }
+}
+  
+@media screen and (max-width: 600px) {
+    .responsive-wide {
+        width: 90vw;
+    }
+    .google-map {
+        width: 85vw;
+        margin: auto;
+    }
+}

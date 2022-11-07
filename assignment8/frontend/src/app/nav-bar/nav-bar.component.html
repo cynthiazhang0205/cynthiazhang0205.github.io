@@ -1,0 +1,5 @@
+<ul ngbNav [activeId]="currentRout" class="my-navbar">
+  <li [ngbNavItem]="link.target" *ngFor="let link of links">
+    <a ngbNavLink [routerLink]="link.target">{{ link.title }}</a>
+  </li>
+</ul>
